@@ -3,7 +3,7 @@ A machine learning-based prediction model for bioinformatics tasks, adaptable fo
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
+
 
 
 # Import necessary libraries
@@ -69,8 +69,6 @@ plt.show()
 # Now, df_cleaned is ready for further feature engineering and model building.
 
 
-# In[2]:
-
 
 # Step 2.2: Feature Engineering
 
@@ -126,9 +124,6 @@ print("\nDataset after Feature Engineering:")
 print(df_cleaned.head())
 
 
-# In[3]:
-
-
 # Step 2.3: Exploratory Data Analysis (EDA)
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -179,7 +174,6 @@ print(correlation_with_target)
 # - Glucose, BMI, and Insulin levels may have a strong correlation with the diabetes outcome based on the heatmap.
 
 
-# In[4]:
 
 
 # Step 3.1: Model Selection (Random Forest)
@@ -202,7 +196,7 @@ rf_model = RandomForestClassifier(n_estimators=100, random_state=42)
 # Now, we move to model training...
 
 
-# In[5]:
+
 
 
 # Step 3.2: Model Training
@@ -213,7 +207,7 @@ rf_model.fit(X_train, y_train)
 # After training, we proceed to model evaluation...
 
 
-# In[6]:
+
 
 
 # Step 3.3: Model Evaluation
@@ -256,9 +250,6 @@ plt.show()
 # The model evaluation is now complete.
 
 
-# In[7]:
-
-
 from sklearn.ensemble import RandomForestClassifier
 
 # Initialize Random Forest model
@@ -274,7 +265,6 @@ rf_importances = rf_importances.sort_values(by="Importance", ascending=False)
 print(rf_importances)
 
 
-# In[8]:
 
 
 # Import the required module for roc_auc_score
@@ -295,8 +285,6 @@ print(f"ROC-AUC: {rf_auc:.2f}")
 
 
 
-# In[9]:
-
 
 # Import the required module for GridSearchCV
 from sklearn.model_selection import GridSearchCV
@@ -314,8 +302,6 @@ grid_rf.fit(X_train, y_train)
 print(f"Best Parameters for Random Forest: {grid_rf.best_params_}")
 print(f"Best Cross-Validation Accuracy: {grid_rf.best_score_:.2f}")
 
-
-# In[10]:
 
 
 from sklearn.model_selection import GridSearchCV
@@ -340,9 +326,6 @@ print(f"Best Parameters for Random Forest: {grid_rf.best_params_}")
 print(f"Best Cross-Validation Accuracy: {grid_rf.best_score_:.2f}")
 
 
-# In[11]:
-
-
 from sklearn.decomposition import PCA
 
 # Initialize PCA
@@ -355,8 +338,6 @@ X_train_pca = pca.fit_transform(X_train)
 X_test_pca = pca.transform(X_test)
 
 
-# In[12]:
-
 
 import shap
 
@@ -367,8 +348,6 @@ shap_values = explainer.shap_values(X_test)
 # Plot SHAP summary
 shap.summary_plot(shap_values, X_test, feature_names=X.columns)
 
-
-# In[ ]:
 
 
 # Predict on the holdout test set
@@ -385,14 +364,10 @@ final_auc = roc_auc_score(y_test, grid_rf.best_estimator_.predict_proba(X_test)[
 print(f"Final ROC-AUC: {final_auc:.2f}")
 
 
-# In[ ]:
-
 
 import joblib
 joblib.dump(grid_rf.best_estimator_, 'best_random_forest_model.pkl')
 
-
-# In[ ]:
 
 
 from sklearn.ensemble import RandomForestClassifier
@@ -412,15 +387,9 @@ grid_rf = GridSearchCV(RandomForestClassifier(random_state=42), param_grid_rf, c
 grid_rf.fit(X_train, y_train)
 
 
-# In[ ]:
-
 
 import joblib
 joblib.dump(grid_rf.best_estimator_, 'best_random_forest_model.pkl')
-
-
-# In[ ]:
-
 
 import joblib
 
@@ -428,25 +397,11 @@ import joblib
 joblib.dump(grid_rf.best_estimator_, 'best_random_forest_model.pkl')
 
 
-# In[ ]:
-
-
 import joblib
 
 # Load the trained model
 model = joblib.load('best_random_forest_model.pkl')
 
-
-# In[ ]:
-
-
-import os
-
-
-# In[ ]:
-
-
-os.getcwd()
 
 
 # In[ ]:
