@@ -435,19 +435,6 @@ import joblib
 model = joblib.load('best_random_forest_model.pkl')
 
 
-# In[ ]:
-
-
-import os
-
-
-# In[ ]:
-
-
-os.getcwd()
-
-
-# In[ ]:
 
 
 
